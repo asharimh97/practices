@@ -16,10 +16,27 @@ const setup = (props={}) => {
   return wrapper;
 }
 
-test("renders without error", () => {
-
-});
-
 test("doesn't throw warning with expected props", () => {
   checkProps(GuessedWords, defaultProps);
+});
+
+describe("if there are no words guessed", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = setup({ guessedWords: [] })
+  });
+
+  test("renders without error", () => {
+    const component = findByTestAttributes(wrapper, "component-guessed-words");
+    expect(component.length).toBe(1);
+  });
+
+  test("renders instructions to guess a word", () => {
+    const instruction = findByTestAttributes(wrapper, "component-instruction");
+    expect(instruction.length).not.toBe(0);
+  })
+});
+
+describe("if there are words guessed", () => {
+
 });

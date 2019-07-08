@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 const GuessedWords = props => {
   return (
-    <div />
+    <div data-test="component-guessed-words">
+      {props.guessedWords.length === 0 && (
+        <p data-test="component-instruction">Try to guess the secret word</p>
+      )}
+    </div>
   )
 };
 

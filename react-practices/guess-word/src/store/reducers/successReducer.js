@@ -1,13 +1,13 @@
 import { CORRECT_GUESS } from "../actionTypes";
 
-const initialState = {};
+const initialState = false;
 
 const successReducer = (state = initialState, action) => {
   switch (action.type) {
     case CORRECT_GUESS:
       return true;
     default:
-      return false;
+      return state;
   }
 };
 

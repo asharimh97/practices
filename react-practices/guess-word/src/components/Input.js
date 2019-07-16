@@ -1,10 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { guessWord } from "../store/actions";
 
 export class UnconnectedInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.inputBox = createRef();
+  }
+
+  submitGuessWord = (e) => {
+    e.preventDefault();
+    const guessedWord = this.inputBox.current.value;
+    if (guessedWord && guessedWord.length)
+      this.props.guessWord(guessedWord);
+  }
 
   render() {
     const { success } = this.props;
@@ -13,6 +25,7 @@ export class UnconnectedInput extends Component {
         {success ? "" : (
           <form>
             <input
+              ref={this.inputBox}
               data-test="input-box"
               id="word-guess"
               type="text"
@@ -21,7 +34,7 @@ export class UnconnectedInput extends Component {
             <button
               data-test="submit-button"
               type="submit"
-              onClick={() => this.props.guessWord()}
+              onClick={this.submitGuessWord}
             >
               Submit
             </button>

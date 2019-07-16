@@ -1,6 +1,6 @@
 import { SET_SECRET_WORD } from "../actionTypes"
 
-const initialState = {};
+const initialState = null;
 
 const secretWordReducer = (state = initialState, action) => {
   switch(action.type) {

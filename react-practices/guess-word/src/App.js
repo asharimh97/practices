@@ -20,9 +20,10 @@ export class UnconnectedApp extends Component {
     const { success } = this.props;
     return (
       <div className="App">
+      <div>The secret word is: {this.props.secretWord}</div>
       <Congrats success={success} />
       <Input />
-      <GuessedWords guessedWords={[ {guessedWord: "lorem", letterMatchCount: 1} ]} />
+      <GuessedWords guessedWords={this.props.guessedWords} />
       </div>
     );
   }

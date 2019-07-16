@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 
 import { guessWord } from "../store/actions";
 
-class Input extends Component {
+export class UnconnectedInput extends Component {
+
   render() {
     const { success } = this.props;
     return (
@@ -20,6 +21,7 @@ class Input extends Component {
             <button
               data-test="submit-button"
               type="submit"
+              onClick={() => this.props.guessWord()}
             >
               Submit
             </button>
@@ -41,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Input);
+)(UnconnectedInput);

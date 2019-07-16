@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import { guessWord } from "../store/actions";
+
 class Input extends Component {
   render() {
     const { success } = this.props;
@@ -32,7 +34,9 @@ const mapStateToProps = state => ({
   success: state.success
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  guessWord: bindActionCreators(guessWord, dispatch)
+});
 
 export default connect(
   mapStateToProps,

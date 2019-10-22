@@ -1,0 +1,12 @@
+{
+  "name": "twilio",
+  "version": "1.0.0",
+  "description": "Test twilio API",
+  "main": "index.js",
+  "author": "Ashari Muhammad Hisbulloh",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "dotenv": "^8.1.0"
+  }
+}

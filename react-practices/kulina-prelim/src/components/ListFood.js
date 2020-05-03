@@ -8,7 +8,7 @@ import CardFood from "./CardFood";
 import AppContext from "../context/AppContext";
 
 const Wrapper = styled.div`
-  padding: 8px;
+  padding: 8px 16px;
 `;
 
 const CurrentDay = styled.p`

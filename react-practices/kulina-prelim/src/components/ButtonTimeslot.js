@@ -5,6 +5,7 @@ import AppContext from "../context/AppContext";
 const ButtonGroup = styled.div`
   display: flex;
   margin: 16px 0;
+  padding: 0 8px;
 `;
 
 const Button = styled.button`

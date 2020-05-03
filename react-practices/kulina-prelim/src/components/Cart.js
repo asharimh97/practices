@@ -9,11 +9,13 @@ const Wrapper = styled.div`
   bottom: -100%;
   color: #fff;
   left: 0;
+  margin: auto;
   padding: 8px;
   position: fixed;
   right: 0px;
   transition: all 0.3s ease;
   width: 100%;
+  max-width: 375px;
   z-index: 11;
 
   ${props => props.active && css`

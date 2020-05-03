@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { format } from "date-fns";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import foodList from "../utils/food.json";
@@ -28,8 +27,6 @@ const ListFood = ({ ...props }) => {
       ...prevState,
       cart
     }));
-
-    console.log(state);
   }
 
   return (

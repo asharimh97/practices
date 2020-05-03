@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Kulina",
+    "address": "Jalan Tulodong Atas No. 28, Senayan, Kebayoran Baru, Jakarta Selatan"
+  },
+  {
+    "id": 2,
+    "name": "Pancoran Riverside Apartment",
+    "address": "RT 6/RW 1, Pengadegan, Pancoran, Jakarta Selatan"
+  },
+  {
+    "id": 3,
+    "name": "Jalan Tulodong Atas 28",
+    "address": "Jalan Tulodong Atas No. 28, Senayan, Kebayoran Baru, Jakarta Selatan"
+  },
+  {
+    "id": 4,
+    "name": "Block 71 Jakarta",
+    "address": "Ariobimo Sentral, South Jakarta, RT.9/RW.4, East Kuningan, Jakarta, 12950"
+  },
+  {
+    "id": 5,
+    "name": "Cohive Senopati",
+    "address": "Jalan Tulodong Atas No. 28, Senayan, Kebayoran Baru, Jakarta Selatan"
+  }
+]

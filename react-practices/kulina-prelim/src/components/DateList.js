@@ -25,7 +25,7 @@ const DateList = ({ startDate, activeDate }) => {
   const { state, setState } = useContext(AppContext);
   
   const generateList = () => {
-    let list = new Array(12).fill(startDate, 0, 12);
+    let list = new Array(14).fill(startDate);
     
     list = list.map((item, idx) => add(item, { days: idx }));
     

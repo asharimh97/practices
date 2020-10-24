@@ -12,7 +12,7 @@
     "id": 2,
     "name": "Ayam Bakar si Jagur",
     "package_catalogue": "Menu si Jagur",
-    "price": 25000,
+    "price": 35000,
     "merchant": "Warung si Jagur",
     "rating": 4,
     "image": "https://kln.imgix.net/production/fca1456fd53c871341409f92a6c3d14b_Ayam_bakar_si_jagur.jpeg?w=300"
@@ -21,7 +21,7 @@
     "id": 3,
     "name": "Ayam Kulit Kartel Sambel Bawang",
     "package_catalogue": "Kartel Lunch",
-    "price": 25000,
+    "price": 20000,
     "merchant": "Ayam Geprek Kartel",
     "rating": 4.3,
     "image": "https://kln.imgix.net/production/4710b4aafe5d8ec23c74f97e19aeef87_Ayam_Kulit_Sambel_Bawang_Nasi_Putih_min.jpeg?w=300"
@@ -30,7 +30,7 @@
     "id": 4,
     "name": "Ayam Kulit Kartel Saos Keju",
     "package_catalogue": "Kartel Lunch",
-    "price": 25000,
+    "price": 15000,
     "merchant": "Ayam Geprek Kartel",
     "rating": 3.7,
     "image": "https://kln.imgix.net/production/1d7c93b6113c892022f516428ab529af_ayam_kulit_keju.png?w=300"

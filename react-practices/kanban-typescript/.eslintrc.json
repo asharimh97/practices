@@ -1,0 +1,7 @@
+{
+  "extends": ["react-app", "react-app/jest"],
+  "rules": {
+    "max-len": ["warn", 80],
+    "import/no-anonymous-default-export": "off"
+  }
+}

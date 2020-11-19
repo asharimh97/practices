@@ -1,13 +1,30 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { Container } from "components/atoms";
-import ListTask from "components/organisms/ListTask";
+import { Container, Grid } from "components/atoms";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import CardItem from "components/molecules/CardItem";
 
 function App() {
+  const handleDragEnd = e => {
+    console.log(e);
+    console.log("drag ended");
+  };
+
   return (
     <Container>
-      <ListTask />
+      <Grid columns="repeat(4, minmax(180px, 250px))">
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="droppable">
+            {provided => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                {[...new Array(5)].map((item, idx) => (
+                  <CardItem id={`draggable-${idx}`} key={idx} index={idx} />
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </Grid>
     </Container>
   );
 }

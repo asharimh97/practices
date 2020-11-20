@@ -11,7 +11,7 @@ type GridProp = BaseProp &
 
 const gridConfig: Record<string, any> = {
   columns: { property: "gridTemplateColumns" },
-  gap: { property: "gridGap" },
+  gap: { property: "gridGap", scale: "space" },
   rows: { property: "gridTemplateRows" }
 };
 

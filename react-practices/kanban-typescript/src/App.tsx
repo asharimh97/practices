@@ -1,30 +1,24 @@
 import React from "react";
 import { Container, Grid } from "components/atoms";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import CardItem from "components/molecules/CardItem";
+import { DragDropContext } from "react-beautiful-dnd";
+import ListTask from "components/organisms/ListTask";
 
 function App() {
-  const handleDragEnd = e => {
+  const handleDragEnd = (e: any) => {
     console.log(e);
     console.log("drag ended");
   };
 
   return (
     <Container>
-      <Grid columns="repeat(4, minmax(180px, 250px))">
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <Droppable droppableId="droppable">
-            {provided => (
-              <div ref={provided.innerRef} {...provided.droppableProps}>
-                {[...new Array(5)].map((item, idx) => (
-                  <CardItem id={`draggable-${idx}`} key={idx} index={idx} />
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </Grid>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Grid columns="repeat(4, minmax(180px, 250px))" gap={3}>
+          <ListTask />
+          <ListTask title="Task List 2" id="task-droppable-2" />
+          <ListTask title="Task List 4" id="task-droppable-3" />
+          <ListTask title="Task List 3" id="task-droppable-4" />
+        </Grid>
+      </DragDropContext>
     </Container>
   );
 }

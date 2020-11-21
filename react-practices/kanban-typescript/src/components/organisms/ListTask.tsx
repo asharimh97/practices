@@ -31,7 +31,8 @@ const ListTask: React.FC<Props> = ({
             {tasks?.map((item, idx) => {
               return (
                 <CardItem
-                  task={item}
+                  task={item?.task}
+                  dueDate={item?.dueDate}
                   id={`${id}-task-${idx}`}
                   key={idx}
                   index={idx}

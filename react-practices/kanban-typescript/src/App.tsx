@@ -41,6 +41,27 @@ function App() {
     return tasks;
   };
 
+  const move = (
+    sourceList: Array<any>,
+    destinationList: Array<any>,
+    sourceIndex: number,
+    destinationIndex: number
+  ) => {
+    const tasks1 = [...sourceList];
+    const tasks2 = [...destinationList];
+
+    const [removedItem] = tasks1.splice(sourceIndex, 1);
+
+    tasks2.splice(destinationIndex, 0, removedItem);
+
+    const result = {
+      source: tasks1,
+      destination: tasks2
+    };
+
+    return result;
+  };
+
   const getList = (id: string) => taskList[id];
 
   const handleDragEnd = (e: any) => {
@@ -58,11 +79,18 @@ function App() {
         [source.droppableId]: newTaskList
       });
     } else {
-      console.log("Kamu mindah data ya hmm");
-      console.log(
+      const res = move(
         getList(source.droppableId),
-        getList(destination.droppableId)
+        getList(destination.droppableId),
+        source.index,
+        destination.index
       );
+
+      setTaskList({
+        ...taskList,
+        [source.droppableId]: res.source,
+        [destination.droppableId]: res.destination
+      });
     }
   };
 

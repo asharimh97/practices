@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid } from "components/atoms";
+import { Button, Container, Grid } from "components/atoms";
 import { DragDropContext } from "react-beautiful-dnd";
 import ListTask from "components/organisms/ListTask";
 import tasks from "__mocks__/tasks";
+import Modal from "components/molecules/Modal";
+import FormAddTask from "components/organisms/FormAddTask";
 
 function App() {
+  const [modal, setModal] = useState(true);
   const taskListIds = [
     "task-droppable",
     "task-droppable-2",
@@ -64,6 +67,19 @@ function App() {
 
   const getList = (id: string) => taskList[id];
 
+  const handleAdd = (val: Record<string, any>) => {
+    const listId = taskListIds[0];
+    const list = [...taskList[listId]];
+    list.push(val);
+
+    setTaskList({
+      ...taskList,
+      [listId]: list
+    });
+
+    setModal(false);
+  };
+
   const handleDragEnd = (e: any) => {
     const { source, destination } = e;
 
@@ -108,6 +124,10 @@ function App() {
           ))}
         </Grid>
       </DragDropContext>
+      <Button onClick={() => setModal(true)}>Add Task</Button>
+      <Modal visible={modal} onClose={() => setModal(false)}>
+        <FormAddTask onSubmit={handleAdd} />
+      </Modal>
     </Container>
   );
 }

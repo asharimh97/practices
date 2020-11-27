@@ -5,9 +5,16 @@ import ListTask from "components/organisms/ListTask";
 import tasks from "__mocks__/tasks";
 import Modal from "components/molecules/Modal";
 import FormAddTask from "components/organisms/FormAddTask";
+import { connect } from "react-redux";
 
-function App() {
-  const [modal, setModal] = useState(true);
+type Props = {
+  [key: string]: any;
+};
+
+function App({ ...props }: Props) {
+  console.log(props);
+
+  const [modal, setModal] = useState(false);
   const taskListIds = [
     "task-droppable",
     "task-droppable-2",
@@ -132,4 +139,9 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({
+  list: state.list
+});
+const mapDispatchToProps = (dispatch: any) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

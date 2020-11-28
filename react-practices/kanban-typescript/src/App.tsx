@@ -6,14 +6,15 @@ import tasks from "__mocks__/tasks";
 import Modal from "components/molecules/Modal";
 import FormAddTask from "components/organisms/FormAddTask";
 import { connect } from "react-redux";
+import { listSelector } from "stores/lists/reducer";
+import { bindActionCreators } from "redux";
+import { addList } from "stores/actions";
 
 type Props = {
   [key: string]: any;
 };
 
 function App({ ...props }: Props) {
-  console.log(props);
-
   const [modal, setModal] = useState(false);
   const taskListIds = [
     "task-droppable",
@@ -84,6 +85,8 @@ function App({ ...props }: Props) {
       [listId]: list
     });
 
+    props.addList(val.task);
+
     setModal(false);
   };
 
@@ -140,8 +143,11 @@ function App({ ...props }: Props) {
 }
 
 const mapStateToProps = (state: any) => ({
-  list: state.list
+  list: state.list,
+  listSelected: listSelector(state)
 });
-const mapDispatchToProps = (dispatch: any) => ({});
+const mapDispatchToProps = (dispatch: any) => ({
+  addList: bindActionCreators(addList, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

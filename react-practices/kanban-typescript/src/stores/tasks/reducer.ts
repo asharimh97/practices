@@ -1,7 +1,8 @@
 import { createSelector, nanoid } from "@reduxjs/toolkit";
 import { ADD_LIST } from "stores/lists/actionType";
-import { ADD_TASK } from "./actionType";
+import { ADD_TASK, MOVE_TASK } from "./actionType";
 import { propType as taskPropType } from "./schema";
+import { moveTaskList, reorderList } from "./utils";
 
 type stateType = {
   tasks: Record<string, Array<taskPropType>>;
@@ -45,6 +46,31 @@ const taskReducer = (
           ]
         }
       };
+
+    case MOVE_TASK:
+      const { sourceList, destList, sourceIndex, destIndex } = action.payload;
+      const source = state.tasks[sourceList];
+      const dest = state.tasks[destList];
+      if (sourceList === destList) {
+        const newTasks = reorderList(source, sourceIndex, destIndex);
+
+        return {
+          tasks: {
+            ...state.tasks,
+            [sourceList]: newTasks
+          }
+        };
+      } else {
+        const newTasks = moveTaskList(source, dest, sourceIndex, destIndex);
+
+        return {
+          tasks: {
+            ...state.tasks,
+            [sourceList]: newTasks.source,
+            [destList]: newTasks.destination
+          }
+        };
+      }
     default:
       return state;
   }

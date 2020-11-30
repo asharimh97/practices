@@ -135,7 +135,11 @@ function App({ ...props }: Props) {
         </Grid>
       </DragDropContext>
       <Button onClick={() => setModal(true)}>Add Task</Button>
-      <Modal visible={modal} onClose={() => setModal(false)}>
+      <Modal
+        title="Add New Task"
+        visible={modal}
+        onClose={() => setModal(false)}
+      >
         <FormAddTask onSubmit={handleAdd} />
       </Modal>
     </Container>

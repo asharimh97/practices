@@ -1,7 +1,9 @@
-import { Box, Title } from "components/atoms";
+import { Box, Button, Title } from "components/atoms";
 import CardItem from "components/molecules/CardItem";
-import React from "react";
+import Modal from "components/molecules/Modal";
+import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
+import FormAddTask from "./FormAddTask";
 
 type Props = {
   title?: string;
@@ -16,33 +18,52 @@ const ListTask: React.FC<Props> = ({
   title,
   ...props
 }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const handleAddTask = (val: any) => {
+    console.log(val);
+  };
+
   return (
     <Box {...props}>
       <Title as="h5">{title}</Title>
-      <Droppable droppableId={id}>
-        {provided => (
-          <Box
-            bg="rgba(0,0,0,0.3)"
-            borderRadius="8px"
-            p={3}
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
-            {tasks?.map((item, idx) => {
-              return (
-                <CardItem
-                  task={item?.task}
-                  dueDate={item?.dueDate}
-                  id={`${id}-task-${idx}`}
-                  key={idx}
-                  index={idx}
-                />
-              );
-            })}
-            {provided.placeholder}
-          </Box>
-        )}
-      </Droppable>
+      <Box bg="rgba(0,0,0,0.5)" borderRadius="8px" p={3}>
+        <Droppable droppableId={id}>
+          {provided => (
+            <Box ref={provided.innerRef} {...provided.droppableProps}>
+              {tasks?.map((item, idx) => {
+                return (
+                  <CardItem
+                    task={item?.task}
+                    dueDate={item?.dueDate}
+                    id={`${id}-task-${idx}`}
+                    key={idx}
+                    index={idx}
+                  />
+                );
+              })}
+              {provided.placeholder}
+            </Box>
+          )}
+        </Droppable>
+
+        <Button
+          color="green"
+          block
+          style={{ justifyContent: "center" }}
+          onClick={() => setShowModal(true)}
+        >
+          Add task +
+        </Button>
+
+        <Modal
+          title="Add New Task"
+          visible={showModal}
+          onClose={() => setShowModal(false)}
+        >
+          <FormAddTask onSubmit={handleAddTask} />
+        </Modal>
+      </Box>
     </Box>
   );
 };

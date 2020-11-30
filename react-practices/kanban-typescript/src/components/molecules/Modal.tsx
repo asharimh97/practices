@@ -1,4 +1,4 @@
-import { Card, Flex } from "components/atoms";
+import { Card, Flex, Title } from "components/atoms";
 import React from "react";
 import { createPortal } from "react-dom";
 import styled, { css } from "styled-components";
@@ -10,6 +10,7 @@ type Props = {
   visible?: boolean;
   onClose?: any;
   children?: any;
+  title?: string;
 };
 
 type OverlayProps = {
@@ -56,6 +57,7 @@ const Modal: React.FC<Props> = ({
   width,
   visible,
   onClose,
+  title,
   ...props
 }) => {
   const modalRoot = document.getElementById("modal-root") as HTMLElement;
@@ -64,6 +66,9 @@ const Modal: React.FC<Props> = ({
     <Overlay visible={visible}>
       <Card position="relative" width={width}>
         <CloseButton onClick={onClose}>x</CloseButton>
+        <Title as="h5" mt={0} mb={3}>
+          {title}
+        </Title>
         {children}
       </Card>
     </Overlay>

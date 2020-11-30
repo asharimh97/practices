@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Grid } from "components/atoms";
+import { Box, Button, Container, Grid } from "components/atoms";
 import { DragDropContext } from "react-beautiful-dnd";
 import ListTask from "components/organisms/ListTask";
 import tasks from "__mocks__/tasks";
 import Modal from "components/molecules/Modal";
-import FormAddTask from "components/organisms/FormAddTask";
 import { connect } from "react-redux";
 import { listSelector } from "stores/lists/reducer";
 import { bindActionCreators } from "redux";
@@ -134,14 +133,18 @@ function App({ ...props }: Props) {
           ))}
         </Grid>
       </DragDropContext>
-      <Button onClick={() => setModal(true)}>Add Task</Button>
       <Modal
-        title="Add New Task"
+        title="Add New List"
         visible={modal}
         onClose={() => setModal(false)}
       >
-        <FormAddTask onSubmit={handleAdd} />
+        Disini nanti isinya form add list
       </Modal>
+      <Box position="fixed" top={3} right={3} onClick={() => setModal(true)}>
+        <Button colorType="gradient" color="blue" rounded>
+          + Add List
+        </Button>
+      </Box>
     </Container>
   );
 }

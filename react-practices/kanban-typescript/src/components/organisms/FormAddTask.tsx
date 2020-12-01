@@ -15,11 +15,11 @@ const FormAddTask: React.FC<Props> = ({ defaultValues = {}, onSubmit }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Label htmlFor="name">Name</Label>
-          <Input type="text" id="name" name="task" ref={register} />
+          <Input type="text" id="name" name="task" ref={register} required />
         </div>
         <div>
           <Label htmlFor="dueDate">Due Date</Label>
-          <Input type="date" name="dueDate" ref={register} />
+          <Input type="date" name="dueDate" ref={register} required />
         </div>
         <Flex justifyContent="flex-end" mt={3}>
           <Button size="small" type="submit" color="blue">

@@ -1,4 +1,4 @@
-import { createSelector, nanoid } from "@reduxjs/toolkit";
+import { createSelector } from "@reduxjs/toolkit";
 import { ADD_LIST } from "./actionType";
 
 const initialState = {
@@ -18,8 +18,7 @@ const listReducer = (state = initialState, action: Record<string, any>) => {
         lists: [
           ...state.lists,
           {
-            id: nanoid(),
-            name: action.payload.name
+            ...action.payload
           }
         ]
       };

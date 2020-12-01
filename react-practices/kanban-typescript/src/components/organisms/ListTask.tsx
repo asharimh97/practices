@@ -3,7 +3,12 @@ import CardItem from "components/molecules/CardItem";
 import Modal from "components/molecules/Modal";
 import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
+import { connect } from "react-redux";
+import { taskSelector } from "stores/tasks/reducer";
 import FormAddTask from "./FormAddTask";
+import { propType as taskPropType } from "stores/tasks/schema";
+import { bindActionCreators } from "redux";
+import { addTask } from "stores/actions";
 
 type Props = {
   title?: string;
@@ -20,8 +25,11 @@ const ListTask: React.FC<Props> = ({
 }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const handleAddTask = (val: any) => {
-    console.log(val);
+  const handleAddTask = (data: any, e: any) => {
+    const listId = id;
+    props.addTask(listId, data);
+    e.target.reset();
+    setShowModal(false);
   };
 
   return (
@@ -31,7 +39,7 @@ const ListTask: React.FC<Props> = ({
         <Droppable droppableId={id}>
           {provided => (
             <Box ref={provided.innerRef} {...provided.droppableProps}>
-              {tasks?.map((item, idx) => {
+              {tasks?.map((item: taskPropType, idx: number) => {
                 return (
                   <CardItem
                     task={item?.task}
@@ -69,9 +77,16 @@ const ListTask: React.FC<Props> = ({
 };
 
 ListTask.defaultProps = {
-  tasks: [...new Array(5)],
   id: "droppable-task",
   title: "Title Tasks"
 };
 
-export default ListTask;
+const mapStateToProps = (state: any, props: any) => ({
+  tasks: taskSelector(state, props)
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  addTask: bindActionCreators(addTask, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListTask);

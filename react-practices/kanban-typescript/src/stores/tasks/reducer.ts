@@ -14,8 +14,8 @@ const initialState = {
 
 export const taskState = initialState;
 
-const allTaskSelector = (state: any) => state.task.tasks;
-export const taskSelector = createSelector(allTaskSelector, state => state);
+const allTaskSelector = (state: any, props: any) => state.task.tasks[props.id];
+export const taskSelector = createSelector(allTaskSelector, tasks => tasks);
 
 const taskReducer = (
   state: stateType = initialState,
@@ -27,7 +27,7 @@ const taskReducer = (
       return {
         tasks: {
           ...state.tasks,
-          [action.payload.name]: []
+          [action.payload.id]: []
         }
       };
 
@@ -36,11 +36,11 @@ const taskReducer = (
       return {
         tasks: {
           ...state.tasks,
-          [action.payload.listName]: [
-            ...state.tasks[action.payload.listName],
+          [action.payload.listId]: [
+            ...state.tasks[action.payload.listId],
             {
               id: nanoid(),
-              name: action.payload.name,
+              task: action.payload.task,
               dueDate: action.payload.dueDate
             }
           ]

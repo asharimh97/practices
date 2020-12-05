@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "extends": [
+    "google",
+    "plugin:vue/recommended",
+    "eslint:recommended",
+    "prettier/vue",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "comma-dangle": "off",
+    "class-methods-use-this": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/prefer-default-export": "off"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "vue",
+    "javascript"
+  ],
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "octref.vetur",
+  "vetur.format.defaultFormatter.js": "prettier",
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "force-expand-multiline"
+    },
+    "prettyhtml": {
+      "printWidth": 80,
+      "singleQuote": false,
+      "wrapAttributes": false,
+      "sortAttributes": false
+    }
+  }
+}

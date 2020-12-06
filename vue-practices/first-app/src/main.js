@@ -1,4 +1,6 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import Vue, { createApp } from "vue";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+Vue.config.ignoredElements = [/^ion-/];
+
+createApp(App).mount('#app');

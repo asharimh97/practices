@@ -6,7 +6,7 @@
     {{ message }}
   </div>
   <button v-on:click="handleChangeMessage">
-    Change the message buddy!
+    Change the message buddy! <ion-icon name="heart" />
   </button>
 </template>
 <script>

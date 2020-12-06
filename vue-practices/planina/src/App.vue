@@ -1,10 +1,17 @@
 <template>
-  <div id="app">Welcome to vue app baby!</div>
+  <div>
+    <div id="app">Welcome to vue app baby! <ion-icon name="heart" /></div>
+    <Sembarang> Ini konten sembarang kawankuh </Sembarang>
+  </div>
 </template>
 
 <script>
+import Sembarang from "./components/Sembarang";
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    Sembarang
+  }
 };
 </script>
 

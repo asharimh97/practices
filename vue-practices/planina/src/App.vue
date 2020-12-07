@@ -2,16 +2,19 @@
   <div>
     <div class="background" />
     <Navbar />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Navbar from "./components/molecules/Navbar";
+import Footer from "./components/molecules/Footer";
 
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 };
 </script>

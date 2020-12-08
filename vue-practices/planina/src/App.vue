@@ -2,6 +2,7 @@
   <div>
     <div class="background" />
     <Navbar />
+    <Home />
     <Footer />
   </div>
 </template>
@@ -9,12 +10,14 @@
 <script>
 import Navbar from "./components/molecules/Navbar";
 import Footer from "./components/molecules/Footer";
+import Home from "./components/organisms/Home";
 
 export default {
   name: "App",
   components: {
     Navbar,
-    Footer
+    Footer,
+    Home
   }
 };
 </script>

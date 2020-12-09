@@ -44,7 +44,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .mountain-description {
-  padding-top: 80px;
+  padding-top: 64px;
   text-align: left;
 }
 .mountain-description__divider {

@@ -12,7 +12,8 @@ export default {
 .main-content {
   align-items: center;
   display: flex;
-  min-height: calc(100vh - 102px);
+  min-height: calc(100vh - 210px);
+  padding-top: 105px;
   position: relative;
   z-index: 5;
 }

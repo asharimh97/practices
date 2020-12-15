@@ -66,6 +66,44 @@ html, body {
   width: 100%;
 }
 
+.content__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  z-index: 2;
+}
+
+/* Mountain name */
+.mountain__location, .mountain__city, .mountain__description {
+  color: var(--white);
+  --animate-duration: 1s;
+} 
+.mountain__divider {
+  background: var(--white);
+  height: 3px;
+  margin-bottom: 8px;
+  width: 50px;
+}
+.mountain__city {
+  font-size: 20px;
+  font-weight: var(--medium);
+  letter-spacing: 3px;
+  line-height: 175%;
+  text-transform: uppercase;
+}
+.mountain__location {
+  font-size: 96px;
+  font-weight: var(--extrabold);
+  letter-spacing: 3px;
+  line-height: 131px;
+  text-transform: uppercase;
+}
+.mountain__description {
+  font-weight: var(--regular);
+  line-height: 1.75;
+  width: 57ch;
+}
+
 /* Footer */
 #footer {
   bottom: 0;

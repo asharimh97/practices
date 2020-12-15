@@ -16,7 +16,10 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
   <link rel="stylesheet" href="./fullpage.min.css">
+
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -37,10 +40,81 @@
   <main id="fullpage">
     <section class="section" id="section-one" style="background-image: url('./images/mountain.jpg');">
       <div class="overlay"></div>
-      lorem ipsum
+      <div class="container">
+        <div class="content__wrapper">
+          <div>
+            <div class="animate__animated animate__fadeInDown">
+              <div class="mountain__divider"></div>
+              <h5 class="mountain__city">
+                Wonosobo
+              </h5>
+            </div>
+            <h1 class="mountain__location animate__animated animate__fadeInDown animate__delay-1s">
+              Kembang
+            </h1>
+            <p class="mountain__description animate__animated animate__fadeInDown animate__delay-1s">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+              Optio iste eveniet officia quisquam cupiditate ipsa, voluptatibus 
+              dolor quos, nemo reprehenderit a esse necessitatibus magnam commodi. 
+              Quibusdam quo ex praesentium perspiciatis!
+            </p>
+          </div>
+          <div>lorem ipsum</div>
+        </div>
+      </div>
     </section>
-    <section class="section" id="section-two" style="background-image: url('./images/mountain-1.jpg');"></section>
-    <section class="section" id="section-three" style="background-image: url('./images/mountain-2.jpg');"></section>
+
+    <section class="section" id="section-two" style="background-image: url('./images/mountain-1.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div data-aos="fade-down" class="content__wrapper">
+          <div>
+            <div>
+              <div class="mountain__divider"></div>
+              <h5 class="mountain__city">
+                Wonosobo
+              </h5>
+            </div>
+            <h1 class="mountain__location">
+              Sumbing
+            </h1>
+            <p class="mountain__description">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+              Optio iste eveniet officia quisquam cupiditate ipsa, voluptatibus 
+              dolor quos, nemo reprehenderit a esse necessitatibus magnam commodi. 
+              Quibusdam quo ex praesentium perspiciatis!
+            </p>
+          </div>
+          <div>lorem ipsum</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-three" style="background-image: url('./images/mountain-2.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="content__wrapper">
+          <div>
+            <div class="animate__animated animate__fadeInDown">
+              <div class="mountain__divider"></div>
+              <h5 class="mountain__city">
+                Yogyakarta
+              </h5>
+            </div>
+            <h1 class="mountain__location animate__animated animate__fadeInDown animate__delay-1s">
+              Merapi
+            </h1>
+            <p class="mountain__description animate__animated animate__fadeInDown animate__delay-1s">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+              Optio iste eveniet officia quisquam cupiditate ipsa, voluptatibus 
+              dolor quos, nemo reprehenderit a esse necessitatibus magnam commodi. 
+              Quibusdam quo ex praesentium perspiciatis!
+            </p>
+          </div>
+          <div>lorem ipsum</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="footer">
@@ -61,6 +135,7 @@
 
   <script src="./fullpage.min.js"></script>
   <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>

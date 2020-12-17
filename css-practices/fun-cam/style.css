@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+}
+
+#player {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 250px;
+}
+
+#image {
+  background: #dedecd;
+  width: 100%;
+}

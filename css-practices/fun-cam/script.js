@@ -1,11 +1,18 @@
+const userMedias = {
+  display: "display",
+  video: "video"
+};
+
 const video = document.getElementById("player");
+const display = document.getElementById("display-player");
 const canvas = document.getElementById("image");
 const ctx = canvas.getContext("2d");
+let displayedMedia = userMedias.video;
 
 function getVideo() {
   navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(localStream => {
-      console.log(localStream);
+      displayedMedia = userMedias.video
 
       video.srcObject = localStream;
       video.play();
@@ -16,21 +23,38 @@ function getVideo() {
     })
 }
 
+function getDisplayVideo() {
+  navigator.mediaDevices.getDisplayMedia()
+    .then(mediaStream => {
+      displayedMedia = userMedias.display;
+
+      display.srcObject = mediaStream;
+      display.play();
+    })
+    .catch(err => {
+      console.error(err);
+      console.log("OH NO Media failed!!!");
+    })
+}
+
 function paintToCanvas() {
-  const width = video.videoWidth;
-  const height = video.videoHeight;
+  const media = displayedMedia === userMedias.video ? video : display;
+  const width = media.videoWidth;
+  const height = media.videoHeight;
 
   canvas.width = width;
   canvas.height = height;
 
   return setInterval(() => {
-    ctx.drawImage(video, 0, 0, width, height);
+    ctx.drawImage(media, 0, 0, width, height);
 
-    let pixels = ctx.getImageData(0, 0, width, height);
-
-    pixels = rgbSplit(pixels);
-
-    ctx.putImageData(pixels, 0, 0);
+    if (displayedMedia === userMedias.video) {
+      let pixels = ctx.getImageData(0, 0, width, height);
+  
+      pixels = rgbSplit(pixels);
+  
+      ctx.putImageData(pixels, 0, 0);
+    }
 
   }, 24);
 }
@@ -45,6 +69,9 @@ function rgbSplit(pixels) {
   return pixels;
 }
 
-getVideo();
+// getVideo();
+
+// getDisplayVideo();
 
 video.addEventListener("canplay", paintToCanvas);
+display.addEventListener("canplay", paintToCanvas);

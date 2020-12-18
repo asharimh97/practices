@@ -9,10 +9,20 @@ html, body {
   top: 0;
 }
 
-#player {
+#player-wrapper {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   right: 20px;
   top: 20px;
+}
+
+#player {
+  margin-bottom: 20px;
+  width: 250px;
+}
+
+#display-player {
   width: 250px;
 }
 

@@ -5,10 +5,6 @@ type Prop<T> = {
 };
 
 function SamplePage(prop: Prop<Record<string, any>>) {
-  const sembarang = [123, 123, 123];
-
-  console.log(sembarang);
-
   return (
     <div>
       <Sample />

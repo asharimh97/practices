@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@stockbit/ui": "^0.0.8",
     "@styled-system/theme-get": "^5.1.2",
     "next": "10.0.3",
     "react": "17.0.1",

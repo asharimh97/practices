@@ -8,7 +8,7 @@ function Lorem() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(effects.getFilms());
+    dispatch(effects.getFilms({ t: "Iron Man" }));
   }, [dispatch]);
 
   return (

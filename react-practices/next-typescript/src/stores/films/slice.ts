@@ -5,6 +5,8 @@ import {
   createSlice,
   PayloadAction
 } from "@reduxjs/toolkit";
+
+import { getAllFilms } from "services/api/film";
 import { ActionPayload } from "stores/types";
 import actionTypes from "./actionTypes";
 
@@ -30,14 +32,15 @@ export const selectors = createSelector(filmSelector, films => ({ ...films }));
 
 // Side effects
 export const effects = {
-  getFilms: createAsyncThunk(actionTypes.GET_FILMS, async () => {
+  getFilms: createAsyncThunk(actionTypes.GET_FILMS, async params => {
     try {
       // do async await here
-      console.log("Request get films");
-      const data = {
-        films: [],
-        page: 10
-      };
+      const response = await getAllFilms(params);
+      if (response.status !== 200) {
+        throw new Error("Attempt get film failed");
+      }
+
+      const { data } = response;
 
       return { data };
     } catch (error) {
@@ -56,7 +59,6 @@ const extraReducers = builder => {
       (state: State, action: ActionPayload) => {
         state.isLoading = true;
         state.error = null;
-        console.log({ state, action });
       }
     )
     .addCase(
@@ -71,7 +73,6 @@ const extraReducers = builder => {
 
         state.message = message;
         state.isLoading = false;
-        console.log({ state, action });
       }
     )
     .addCase(

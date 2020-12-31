@@ -1,8 +1,14 @@
 import { wrapper } from "stores";
+import { ThemeProvider } from "styled-components";
+import theme from "styles/theme";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
 
 export default wrapper.withRedux(MyApp);

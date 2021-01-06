@@ -1,7 +1,14 @@
-function selectDeliveryAddress(addressOrIndex: any) {
+const deliveryAddreses: string[] = [];
+
+function selectDeliveryAddress(addressOrIndex: unknown): string {
   if (typeof addressOrIndex === 'number') {
     addressOrIndex.toFixed(10);
+    return deliveryAddreses[addressOrIndex];
+  } else if (typeof addressOrIndex === 'string' ) {
+    return addressOrIndex;
   }
+
+  return ''
 }
 
 interface SembarangProp {

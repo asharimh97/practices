@@ -7,6 +7,13 @@ const Sample: React.FC = () => {
   return (
     <div>
       <Container>Sample component</Container>
+      <Flex mb={4}>
+        <p>Lorem</p>
+        <p>Lorem</p>
+        <p>Lorem</p>
+        <p>Lorem</p>
+        <p>Lorem</p>
+      </Flex>
       <Flex>
         <Nav href="/" icon={IoIosAirplane}>
           Sample Nav

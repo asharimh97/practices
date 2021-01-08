@@ -1,4 +1,4 @@
-import Sample from "components/Sample";
+import Sample from "../src/components/Samplesasd";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 

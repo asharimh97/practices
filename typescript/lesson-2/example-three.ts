@@ -39,4 +39,4 @@ const searchWithOverload: SearchOverloadFn = (
   console.log("hohoho")
 }
 
-searchWithOverload("lorem", ([]) => [], []);
+searchWithOverload("lorem", []);

@@ -28,6 +28,9 @@ type SearchOverloadFn = {
   ): void;
 };
 
+// @ts-ignore
+// should add this little piece of shit so `searchWithOverload` doesn't give error
+// that Promise couldn't be given `void`
 const searchWithOverload: SearchOverloadFn = (
   term: string,
   p2?: string[] | ((result: any[]) => void),
@@ -35,3 +38,5 @@ const searchWithOverload: SearchOverloadFn = (
 ) => {
   console.log("hohoho")
 }
+
+searchWithOverload("lorem", ([]) => [], []);

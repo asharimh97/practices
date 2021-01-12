@@ -1,4 +1,4 @@
-import Sample from "../src/components/Samplesasd";
+import Sample from "../src/components/Sample";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -8,6 +8,7 @@ function Lorem() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(effects.getFilms({ t: "Iron Man" }));
   }, [dispatch]);
 

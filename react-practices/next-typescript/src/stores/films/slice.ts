@@ -10,21 +10,16 @@ import { getAllFilms } from "services/api/film";
 import { ActionPayload } from "stores/types";
 import actionTypes from "./actionTypes";
 
-interface State {
-  data: Record<string, any>;
-  isLoading: boolean;
-  error: Object;
-  message: string;
-}
-
 // Initial state
 
-const initialState: State = {
+const initialState = {
   data: {},
   isLoading: false,
   error: null,
   message: ""
 };
+
+type State = typeof initialState;
 
 // Selectors
 const filmSelector = state => state.films;

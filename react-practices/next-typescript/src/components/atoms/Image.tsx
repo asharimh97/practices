@@ -8,14 +8,15 @@ import Box from "./Box";
 
 const ROUND_RADIUS = "12px";
 
-type ImageProp = BaseProp &
-  Pick<React.ImgHTMLAttributes<HTMLImageElement>, "src" | "alt"> & {
-    rounded?: boolean;
-    fullRounded?: boolean;
-    autofit?: boolean;
-    // this type to handle unlisted props
-    [key: string]: any;
-  };
+interface ImageProp
+  extends BaseProp,
+    Pick<React.ImgHTMLAttributes<HTMLImageElement>, "src" | "alt"> {
+  rounded?: boolean;
+  fullRounded?: boolean;
+  autofit?: boolean;
+  // this type to handle unlisted props
+  [key: string]: any;
+}
 
 const rounded = (props: ImageProp) =>
   props.rounded && { borderRadius: ROUND_RADIUS };

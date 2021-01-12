@@ -18,14 +18,24 @@ import {
   TypographyProps
 } from "styled-system";
 
-export type BaseProp = SpaceProps &
-  BorderProps &
-  LayoutProps &
-  ColorProps &
-  BackgroundProps &
-  PositionProps &
-  ShadowProps &
-  TypographyProps;
+export interface BaseProp
+  extends SpaceProps,
+    BorderProps,
+    LayoutProps,
+    ColorProps,
+    BackgroundProps,
+    PositionProps,
+    ShadowProps,
+    TypographyProps {}
+
+// export type BaseProp = SpaceProps &
+//   BorderProps &
+//   LayoutProps &
+//   ColorProps &
+//   BackgroundProps &
+//   PositionProps &
+//   ShadowProps &
+// TypographyProps;
 
 const Base = styled.div<BaseProp>`
   ${background}

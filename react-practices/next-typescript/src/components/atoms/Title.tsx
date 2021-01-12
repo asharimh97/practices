@@ -10,14 +10,14 @@ const titleStyle: Record<string, any> = {
   h5: { fontSize: theme.fontSizes[2] }
 };
 
-type TitleProp = TextProp & {
+interface TitleProp extends TextProp {
   as?: any;
   forwardedAs?: any;
   children?: any;
   theme?: any;
   // temporary
   [key: string]: any;
-};
+}
 
 const Title = styled(Text)<TitleProp>`
   ${props =>

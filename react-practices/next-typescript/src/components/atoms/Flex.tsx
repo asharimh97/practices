@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { flexbox, FlexboxProps, system } from "styled-system";
+import { StringNumberOrArray } from "../../../@types/general";
 import Base, { BaseProp } from "./Base";
 
-type FlexProp = BaseProp &
-  FlexboxProps & {
-    direction?: string | Array<any>;
-    align?: string | Array<any>;
-    wrap?: string | Array<any>;
-    justify?: string | Array<any>;
-  };
+interface FlexProp extends BaseProp, FlexboxProps {
+  direction?: StringNumberOrArray;
+  align?: StringNumberOrArray;
+  wrap?: StringNumberOrArray;
+  justify?: StringNumberOrArray;
+}
 
 const flexConfig: Record<string, any> = {
   direction: {

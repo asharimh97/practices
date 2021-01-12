@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, CSSObject } from "styled-components";
 import {
   color,
   ColorProps,
@@ -11,9 +11,14 @@ import {
   TypographyProps
 } from "styled-system";
 import theme from "styles/theme";
+import { StringNumberOrArray } from "../../../@types/general";
 
-export type TextProp = {
-  as?: any;
+export interface TextProp
+  extends TypographyProps,
+    ColorProps,
+    SpaceProps,
+    LayoutProps {
+  as?: string;
   theme?: typeof theme | any;
 
   bold?: boolean;
@@ -31,14 +36,11 @@ export type TextProp = {
   tight?: boolean;
   truncate?: boolean;
 
-  weight?: string | number | Array<any>;
-  align?: string | Array<any>;
-  family?: string | Array<any>;
-  spacing?: string | number | Array<any>;
-} & TypographyProps &
-  ColorProps &
-  SpaceProps &
-  LayoutProps;
+  weight?: StringNumberOrArray;
+  align?: StringNumberOrArray;
+  family?: StringNumberOrArray;
+  spacing?: StringNumberOrArray;
+}
 
 // Custom key prop / aliasing a prop
 const textConfig: Record<string, any> = {
@@ -48,34 +50,35 @@ const textConfig: Record<string, any> = {
   spacing: { property: "letterSpacing" }
 };
 
-const bold = css`
-  font-family: ${(props: TextProp) =>
-    props.bold && `"Proxima Nova Bold", ${props.theme.font}`};
-  font-weight: ${(props: TextProp) => props.bold && props.theme.bold};
-`;
+const bold = ({ bold, theme }: TextProp) =>
+  bold &&
+  css`
+    font-family: "Proxima Nova Bold", ${theme.font};
+    font-weight: ${theme.bold};
+  `;
 
 const semibold = css`
-  font-weight: ${(props: TextProp) => props.semibold && props.theme.semibold};
+  font-weight: ${({ semibold, theme }: TextProp) => semibold && theme.semibold};
 `;
 
 const medium = css`
-  font-weight: ${(props: TextProp) => props.medium && props.theme.medium};
+  font-weight: ${({ medium, theme }: TextProp) => medium && theme.medium};
 `;
 
 const capitalize = css`
-  text-transform: ${(props: TextProp) => props.capitalize && "capitalize"};
+  text-transform: ${({ capitalize }: TextProp) => capitalize && "capitalize"};
 `;
 
 const uppercase = css`
-  text-transform: ${(props: TextProp) => props.uppercase && "uppercase"};
+  text-transform: ${({ uppercase }: TextProp) => uppercase && "uppercase"};
 `;
 
 const lowercase = css`
-  text-transform: ${(props: TextProp) => props.lowercase && "lowercase"};
+  text-transform: ${({ lowercase }: TextProp) => lowercase && "lowercase"};
 `;
 
-const truncate = (props: TextProp) =>
-  props.truncate &&
+const truncate = ({ truncate }: TextProp) =>
+  truncate &&
   css`
     overflow: hidden;
     text-overflow: ellipsis;
@@ -84,11 +87,11 @@ const truncate = (props: TextProp) =>
   `;
 
 const small = css`
-  font-size: ${(props: TextProp) => props.small && props.theme.fontSizes[0]};
+  font-size: ${({ small, theme }: TextProp) => small && theme.fontSizes[0]};
 `;
 
-const tight = (props: TextProp) =>
-  props.tight &&
+const tight = ({ tight }: TextProp) =>
+  tight &&
   css`
     margin-top: 0;
     margin-bottom: 0;

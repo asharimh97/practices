@@ -1,9 +1,7 @@
 import {
-  AnyAction,
   createAsyncThunk,
   createSelector,
-  createSlice,
-  PayloadAction
+  createSlice
 } from "@reduxjs/toolkit";
 
 import { getAllFilms } from "services/api/film";

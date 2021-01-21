@@ -1,15 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles/global.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
+import {
+  defaultTheme,
+  Preflight,
+  ThemeProvider
+} from "@xstyled/styled-components";
+import theme from "./styles/theme";
+import AppRoutes from "./routes";
+
+const appTheme = {
+  ...defaultTheme,
+  theme
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={appTheme}>
+      <Preflight />
+      <AppRoutes />
+    </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

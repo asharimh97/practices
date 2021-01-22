@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/global.css";
-import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import {
@@ -11,6 +10,7 @@ import {
 } from "@xstyled/styled-components";
 import theme from "./styles/theme";
 import AppRoutes from "./routes";
+import GlobalStyles from "./styles/globalStyle";
 
 const appTheme = {
   ...defaultTheme,
@@ -20,7 +20,11 @@ const appTheme = {
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={appTheme}>
+      {/* App styling */}
       <Preflight />
+      <GlobalStyles />
+
+      {/* App routing */}
       <AppRoutes />
     </ThemeProvider>
   </React.StrictMode>,

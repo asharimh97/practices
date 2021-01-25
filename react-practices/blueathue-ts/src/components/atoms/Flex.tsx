@@ -31,6 +31,7 @@ interface FlexProp extends FlexboxesProps, BaseStyledComponentProp {
 }
 
 const Flex: React.FC<FlexProp> = props => {
+  // eslint-disable-next-line react/jsx-pascal-case
   return <Comp.div {...props} display="flex" />;
 };
 

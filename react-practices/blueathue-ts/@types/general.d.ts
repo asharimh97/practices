@@ -1,6 +1,9 @@
 import {
+  BackgroundsProps,
   BordersProps,
   ColorProps,
+  EffectsProps,
+  InteractivityProps,
   ITheme,
   LayoutProps,
   SizingProps,
@@ -18,4 +21,7 @@ export type BaseStyledComponentProp<T extends ITheme = Theme> = SpaceProps<T> &
   ColorProps<T> &
   TransitionProps<T> &
   SizingProps<T> &
-  BordersProps<T>;
+  BordersProps<T> &
+  BackgroundsProps<T> &
+  EffectsProps<T> &
+  InteractivityProps<T>;

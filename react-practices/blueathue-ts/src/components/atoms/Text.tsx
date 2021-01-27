@@ -36,6 +36,13 @@ const shortenTextProps = [
   {
     prop: "capitalize",
     cssProperty: () => ({ textTransform: "capitalize" })
+  },
+  {
+    prop: "clearStyle",
+    cssProperty: () => ({
+      textDecoration: "none",
+      fontStyle: "none"
+    })
   }
 ] as const;
 

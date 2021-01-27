@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { Box, Flex, Text } from "../components/atoms";
+import MobileNav from "../components/molecules/MobileNav";
 import { HomeWrapper, Title } from "../components/organisms/home/styled";
 import { NAVIGATIONS } from "../utils/constants";
 
 function Home() {
   return (
     <HomeWrapper align="center">
+      <MobileNav />
       <Box p={7} w="100%">
         <Box mb="3.5em">
           <Title mb={3}>

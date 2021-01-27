@@ -8,8 +8,16 @@ Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
   Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`
 };
 
+export const colors = {
+  ...defaultTheme.colors,
+  "sky-blue": "#9FE2F1",
+  "light-blue": "#48DBFB",
+  "teal-blue": "#18CDCA"
+};
+
 const theme = {
-  fonts
+  fonts,
+  colors
 };
 
 export default theme;

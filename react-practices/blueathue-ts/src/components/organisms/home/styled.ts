@@ -1,4 +1,5 @@
-import styled, { css, th, up } from "@xstyled/styled-components";
+import styled, { css, up } from "@xstyled/styled-components";
+import { colors } from "../../../styles/theme";
 import { Flex, Text } from "../../atoms";
 
 const HomeWrapper = styled(Flex)`
@@ -22,7 +23,11 @@ const HomeWrapper = styled(Flex)`
 `;
 
 const Title = styled(Text)`
-  background: -webkit-linear-gradient(147deg, #18cdca, #9fe2f1);
+  background: -webkit-linear-gradient(
+    147deg,
+    ${colors["teal-blue"]},
+    ${colors["sky-blue"]}
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: montserrat;

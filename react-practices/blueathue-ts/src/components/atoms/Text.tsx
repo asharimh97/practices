@@ -17,6 +17,7 @@ const textProps = [
 ] as const;
 
 const shortenTextProps = [
+  { prop: "bold", cssProperty: () => ({ fontWeight: 700 }) },
   {
     prop: "italic",
     cssProperty: () => ({

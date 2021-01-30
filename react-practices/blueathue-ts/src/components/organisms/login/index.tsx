@@ -38,6 +38,8 @@ const LoginComponent: React.FC = () => {
 
         <x.button
           hoverColor="white"
+          activeColor="white"
+          focusColor="white"
           hoverBackgroundColor="green-400"
           focusBackgroundColor="green-500"
           activeBackgroundColor="green-500"

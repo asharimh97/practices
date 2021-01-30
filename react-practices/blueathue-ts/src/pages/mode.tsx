@@ -1,8 +1,11 @@
+import { MainLayout } from "../components/layouts";
+import ModeComponent from "../components/organisms/mode";
+
 function Mode() {
   return (
-    <div>
-      <h1>Page mode</h1>
-    </div>
+    <MainLayout>
+      <ModeComponent />
+    </MainLayout>
   );
 }
 

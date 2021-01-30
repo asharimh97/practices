@@ -13,6 +13,7 @@ const MobileNav: React.FC = () => {
       <NavWrapper onClick={() => setShowNav(true)}>
         <IoIosMenu />
       </NavWrapper>
+      {/* @ts-ignore */}
       <Wrapper show={showNav}>
         <CloseIcon onClick={() => setShowNav(false)}>
           <IoIosClose />

@@ -12,8 +12,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, ...props }) => {
     <>
       <MobileNav />
       <SideNav />
-      <Box ml={{ _: 0, md: 300 }}>
-        Sebelah sini contentnya
+      <Box
+        ml={{ _: 0, md: 300 }}
+        p={{ _: "16px", md: "32px" }}
+        pt={{ _: "64px", md: "32px" }}
+      >
         {children}
       </Box>
     </>

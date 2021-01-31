@@ -8,11 +8,13 @@ const LoginComponent: React.FC = () => {
       <Box
         borderRadius="lg"
         borderColor="cool-gray-300"
+        // @ts-ignore
         borderWidth
         borderStyle="solid"
         w="100%"
         p={5}
       >
+        {/* @ts-ignore */}
         <Box borderBottomColor="gray-300" borderBottomWidth pb={4} mb={4}>
           <Text bold fontSize="larger" mb="4px">
             Welcome to Blue at Hue

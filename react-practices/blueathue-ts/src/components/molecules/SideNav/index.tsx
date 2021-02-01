@@ -20,7 +20,7 @@ const SideNav: React.FC = () => {
       left={0}
       w={300}
       p={7}
-      display={{ _: "none", md: "block" }}
+      display={{ _: "none", lg: "block" }}
     >
       <Flex mb="32px" justify="center" direction="column">
         <Blob

@@ -3,7 +3,8 @@ import { BaseStyledComponentProp } from "../../../@types/general";
 
 const gridProps = [
   { prop: "column", css: "gridTemplateColumns" },
-  { prop: "row", css: "gridTemplateRows" }
+  { prop: "row", css: "gridTemplateRows" },
+  { prop: "gap", css: "gridGap" }
 ];
 
 const mappedGridProps = gridProps.map(({ prop, css }) =>

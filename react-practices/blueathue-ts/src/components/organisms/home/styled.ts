@@ -28,6 +28,7 @@ const Title = styled(Text)`
     ${colors["teal-blue"]},
     ${colors["sky-blue"]}
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: montserrat;

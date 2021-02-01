@@ -1,8 +1,11 @@
+import { MainLayout } from "../components/layouts";
+import PeopleComponent from "../components/organisms/people";
+
 function People() {
   return (
-    <div>
-      <h1>Page people</h1>
-    </div>
+    <MainLayout>
+      <PeopleComponent />
+    </MainLayout>
   );
 }
 

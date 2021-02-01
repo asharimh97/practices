@@ -1,7 +1,7 @@
 // @ts-ignore
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import PageTitle from "../../molecules/PageTitle";
-import PhotoCard from "../../molecules/PhotoCard";
+import PageTitle from "../molecules/PageTitle";
+import PhotoCard from "../molecules/PhotoCard";
 
 const ModeComponent: React.FC = () => {
   const responsiveBreakpoints = {

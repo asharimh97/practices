@@ -1,8 +1,11 @@
+import { MainLayout } from "../components/layouts";
+import PlacesComponent from "../components/organisms/places";
+
 function Places() {
   return (
-    <div>
-      <h1>Page Places</h1>
-    </div>
+    <MainLayout>
+      <PlacesComponent />
+    </MainLayout>
   );
 }
 

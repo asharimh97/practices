@@ -1,4 +1,5 @@
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import DetailBlog from "../pages/detail-blog";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import ErrorPage from "../pages/_error";
@@ -13,6 +14,9 @@ export default function AppRoutes() {
         </Route>
         <Route path="/login" exact>
           <Login />
+        </Route>
+        <Route path="/detail/blog" exact>
+          <DetailBlog />
         </Route>
 
         {PAGE_ROUTES.map(({ link, page: Page }, idx) => (

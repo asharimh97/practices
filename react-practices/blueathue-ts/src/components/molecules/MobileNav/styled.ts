@@ -8,11 +8,12 @@ const NavWrapper = styled.div`
   position: fixed;
   right: 12px;
   top: 12px;
+  z-index: 3;
 
   ${
     // @ts-ignore
     up(
-      "md",
+      "lg",
       css`
         display: none;
       `
@@ -35,6 +36,7 @@ const Wrapper = styled.div<WrapperProp>`
   position: fixed;
   transition: all 0.3s ease-in-out;
   width: 100%;
+  z-index: 3;
 
   ${
     //@ts-ignore
@@ -48,7 +50,7 @@ const Wrapper = styled.div<WrapperProp>`
   ${
     // @ts-ignore
     up(
-      "md",
+      "lg",
       css`
         display: none;
       `

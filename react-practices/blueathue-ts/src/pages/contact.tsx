@@ -1,8 +1,11 @@
+import { MainLayout } from "../components/layouts";
+import ContactComponent from "../components/organisms/contact";
+
 function Contact() {
   return (
-    <div>
-      <h1>Page contact</h1>
-    </div>
+    <MainLayout>
+      <ContactComponent />
+    </MainLayout>
   );
 }
 

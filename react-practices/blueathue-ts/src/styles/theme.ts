@@ -5,7 +5,8 @@ export const fonts = {
   body: `"Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
 Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
   montserrat: `"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", 
-  Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`
+  Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
+  alice: `"Alice", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif`
 };
 
 export const colors = {

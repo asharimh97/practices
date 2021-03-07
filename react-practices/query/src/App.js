@@ -1,7 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import { useQuery } from 'react-query';
+import { API_URL } from './constants';
+
+const fetchPlanet = async () => {
+  const planets = await fetch(`${API_URL}/planets/`);
+  return planets.json();
+}
 
 function App() {
+  const { isLoading, isError, isSuccess, data } = useQuery('getPlanets', fetchPlanet);
+
+  if (isLoading) {
+    return (<div>Loading...</div>);
+  }
+
+  if (isError) {
+    return (<div>Error fetching</div>)
+  }
+
+  if (isSuccess) {
+    console.log(data);
+  }
+
   return (
     <div className="App">
       <header className="App-header">

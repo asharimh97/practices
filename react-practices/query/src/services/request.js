@@ -7,6 +7,7 @@ const request = axios.create({});
 request.interceptors.request.use(config => {
   if (config.url.includes("omdbapi.com")) {
     config.params.apikey = API_KEY;
+    config.params.r = "json";
   }
 
   return config;
@@ -15,10 +16,10 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(response => {
   let res;
   if (response.status === 200) {
-    res = response.data
+    res = response.data;
   }
 
   return res;
-})
+});
 
 export default request;

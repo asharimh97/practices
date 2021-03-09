@@ -1,22 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-import { useQuery } from 'react-query';
-import { API_URL } from './constants';
+import logo from "./logo.svg";
+import "./App.css";
+import { useQuery } from "react-query";
+import Sembarang from "./Sembarang";
+import request from "./services/request";
+import { OMDB_URL } from "./utils/constants";
 
 const fetchPlanet = async () => {
-  const planets = await fetch(`${API_URL}/planets/`);
-  return planets.json();
-}
+  return await request.get(OMDB_URL, { params: { s: "superman" } });
+  // return await request.get(`${API_URL}/films`);
+  // const planets = await fetch(`${API_URL}/planets/`);
+  // return planets.json();
+};
 
 function App() {
-  const { isLoading, isError, isSuccess, data } = useQuery('getPlanets', fetchPlanet);
+  const { isLoading, isError, isSuccess, data } = useQuery(
+    "getPlanets",
+    fetchPlanet
+  );
 
   if (isLoading) {
-    return (<div>Loading...</div>);
+    return <div>Loading...</div>;
   }
 
   if (isError) {
-    return (<div>Error fetching</div>)
+    return <div>Error fetching</div>;
   }
 
   if (isSuccess) {
@@ -39,6 +46,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Sembarang />
     </div>
   );
 }

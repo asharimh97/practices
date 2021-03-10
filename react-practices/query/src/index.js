@@ -4,14 +4,25 @@ import "./styles/global.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  ThemeProvider,
+  defaultTheme,
+  Preflight
+} from "@xstyled/styled-components";
+import GlobalStyles from "./styles/globalStyles";
+import Routes from "./routes";
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
+    <ThemeProvider theme={defaultTheme}>
+      <Preflight />
+      <GlobalStyles />
+      <QueryClientProvider client={queryClient}>
+        <Routes />
+      </QueryClientProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

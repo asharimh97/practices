@@ -10,4 +10,12 @@ const getAllMovies = async ({ keyword, page = 1 }) => {
   });
 };
 
-export { getAllMovies };
+const getDetailMovie = ({ id }) => {
+  return request.get(OMDB_URL, {
+    params: {
+      i: id
+    }
+  });
+};
+
+export { getAllMovies, getDetailMovie };

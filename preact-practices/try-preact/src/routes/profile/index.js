@@ -14,7 +14,7 @@ const Profile = ({ user }) => {
 
   return (
     <div class={style.profile}>
-      <h1>Profile: {user}</h1>
+      <h1 class="text-3xl font-bold">Profile: {user}</h1>
       <p>This is the user profile for a user named {user}.</p>
 
       <div>Current time: {new Date(time).toLocaleString()}</div>

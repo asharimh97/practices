@@ -13,12 +13,14 @@ import "../style/app.css";
 const App = () => (
   <div id="app">
     <Header />
-    <Router>
-      <Home path="/" />
-      <Profile path="/profile/" user="me" />
-      <Profile path="/profile/:user" />
-      <Lorem path="/lorem" />
-    </Router>
+    <div class="container mt-12 p-5">
+      <Router>
+        <Home path="/" />
+        <Profile path="/profile/" user="me" />
+        <Profile path="/profile/:user" />
+        <Lorem path="/lorem" />
+      </Router>
+    </div>
   </div>
 );
 

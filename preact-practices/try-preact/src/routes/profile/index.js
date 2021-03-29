@@ -1,10 +1,13 @@
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { countsAtom, statusCountsAtom } from "../../stores/counts";
 
 // Note: `user` comes from the URL, courtesy of our router
 const Profile = ({ user }) => {
   const [time, setTime] = useState(Date.now());
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useRecoilState(countsAtom);
+  const status = useRecoilValue(statusCountsAtom);
 
   useEffect(() => {
     let timer = setInterval(() => setTime(Date.now()), 1000);
@@ -30,6 +33,7 @@ const Profile = ({ user }) => {
         </button>{" "}
         Clicked {count} times.
       </p>
+      <p>Status: {status}</p>
     </div>
   );
 };

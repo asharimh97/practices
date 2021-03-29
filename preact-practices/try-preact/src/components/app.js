@@ -9,19 +9,22 @@ import Profile from "../routes/profile";
 import Lorem from "../routes/lorem";
 
 import "../style/app.css";
+import { RecoilRoot } from "recoil";
 
 const App = () => (
-  <div id="app">
-    <Header />
-    <div class="container mt-12 p-5">
-      <Router>
-        <Home path="/" />
-        <Profile path="/profile/" user="me" />
-        <Profile path="/profile/:user" />
-        <Lorem path="/lorem" />
-      </Router>
+  <RecoilRoot>
+    <div id="app">
+      <Header />
+      <div class="container mt-12 p-5">
+        <Router>
+          <Home path="/" />
+          <Profile path="/profile/" user="me" />
+          <Profile path="/profile/:user" />
+          <Lorem path="/lorem" />
+        </Router>
+      </div>
     </div>
-  </div>
+  </RecoilRoot>
 );
 
 export default App;

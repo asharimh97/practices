@@ -1,0 +1,45 @@
+const express = require("express");
+const app = express();
+const PORT = 4000;
+
+const Primus = require("primus");
+const cors = require("cors");
+
+app.use(cors());
+
+app.get("/", (req, res) => {
+  console.log("Accessed from client");
+  res.json({ data: "Hello world", status: 200 });
+})
+
+// Create server
+const server = require("http").createServer(app);
+// const primus = new Primus(server, {});
+
+// // Primus websocket
+// primus.on('connection', spark => {
+//   console.log("hello ws connection");
+
+//   spark.on("data", data => {
+//     console.log(data);
+//   })
+// });
+
+// primus.on("disconnection", spark => {
+//   console.log("Uhh disconnected!");
+// });
+
+// Create websocket from socket io
+const io = require("socket.io")(server, { cors: "*" });
+
+io.on("connection", socket => {
+  console.log("connect melalui websocket");
+  socket.on("data-baru", data => {
+    console.log(data);
+    io.emit("give-new-data", { data: "data baru telah dikirim" })
+  })
+});
+
+server.listen(PORT, () => {
+  console.log(`Listen app on http://localhost:${PORT}`);
+});

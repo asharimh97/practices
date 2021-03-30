@@ -1,7 +1,20 @@
 import { h } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { countsAtom, statusCountsAtom } from "../../stores/counts";
+import { io } from "socket.io-client";
+
+// const Primus = require("primus");
+// const Emitter = require("primus-emitter");
+
+const WS_URL = "http://localhost:4000";
+const socket = io(WS_URL);
+// const Socket = Primus.createSocket({
+//   transformer: "websockets",
+//   plugin: {
+//     emitter: Emitter
+//   }
+// });
 
 // Note: `user` comes from the URL, courtesy of our router
 const Profile = ({ user }) => {
@@ -12,6 +25,32 @@ const Profile = ({ user }) => {
   useEffect(() => {
     let timer = setInterval(() => setTime(Date.now()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  const accessData = useCallback(async () => {
+    const res = await fetch("http://localhost:4000");
+    return res.json();
+  }, []);
+
+  const initSocket = useCallback(() => {
+    console.log("Aku harus melakukan sesuatu");
+    socket.emit("data-baru", { data: "hmmm", message: "hmmm" });
+    // const socket = new Socket(WS_URL);
+    // socket.open();
+    // console.log(socket);
+    // console.log("Apaan ini hei");
+    // socket.emit("connect-yeah", { data: "lorem ipsum" });
+  }, []);
+
+  useEffect(() => {
+    accessData();
+    initSocket();
+  }, [accessData, initSocket]);
+
+  useEffect(() => {
+    socket.on("give-new-data", data => {
+      console.log(data);
+    });
   }, []);
 
   return (

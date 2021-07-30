@@ -18,3 +18,5 @@ type User = ReturnType<typeof createUser>
 
 // Generates parameter of a function in array
 type UserParam = Parameters<typeof createUser>
+
+const user: UserParam = ["lorem ipsum", "admin", false];

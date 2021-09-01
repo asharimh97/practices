@@ -21,6 +21,10 @@ function useDebounce({ value = "", duration = 500 }: useDebounceProps): string {
         }, duration),
       );
     }
+
+    return () => {
+      clearTimeout(timeInterval);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 

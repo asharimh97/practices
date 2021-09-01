@@ -37,6 +37,7 @@
       "quotes": ["error", "double"],
       "react/jsx-filename-extension": "off",
       "react/jsx-one-expression-per-line": "off",
+      "react/jsx-props-no-spreading": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {
   createSlice,
   createSelector,
@@ -17,7 +18,13 @@ const initialState = {
   error: null,
 };
 
-type MovieState = typeof initialState;
+type MovieState = {
+  data: Array<Record<string, any>>,
+  detail: Record<string, any>,
+  isLoading: boolean;
+  message: string;
+  error: any;
+};
 
 // @ts-ignore
 const movieSelector = (state) => state.movie;
@@ -35,6 +42,12 @@ const actionType = {
   GET_DETAIL_MOVIE: `${CONTEXT}/GET_DETAIL_MOVIE`,
 };
 
+interface DetailMoviePayload {
+  error?: any;
+  data?: Record<string, any>
+  id?: string;
+}
+
 export const effects = {
   getAllMovies: createAsyncThunk<any, any>(
     actionType.GET_ALL_MOVIES,
@@ -42,7 +55,7 @@ export const effects = {
       console.log({ page, keyword });
     },
   ),
-  getDetailMovie: createAsyncThunk<any, string>(
+  getDetailMovie: createAsyncThunk<DetailMoviePayload, string>(
     actionType.GET_DETAIL_MOVIE,
     async (movieId) => {
       try {
@@ -81,12 +94,10 @@ const extraReducers = (builder: ActionReducerMapBuilder<MovieState>) => {
     )
     .addCase(
       effects.getDetailMovie.fulfilled,
-      (state: MovieState, action: PayloadAction<any>) => {
-      // do other thing here
+      (state: MovieState, action: PayloadAction<DetailMoviePayload>) => {
         const { data, id, error } = action.payload;
-        console.log(data);
-        if (error) {
-          // do something
+        if (error || !id) {
+          state.error = error;
         } else {
           state.detail[id] = data;
         }

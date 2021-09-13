@@ -32,12 +32,25 @@ function MovieDetailPage({ id }: MovieDetailProps) {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query }) => {
   const { id }: { id?: string; } = query;
 
+  if (!id) {
+    return {
+      notFound: true,
+    };
+  }
+
   // @ts-ignore
-  await store.dispatch(movieEffects.getDetailMovie(id));
+  const getMovie = await store.dispatch(movieEffects.getDetailMovie(id));
+  const { error } = getMovie.payload;
+
+  if (error) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      id: id || "",
+      id,
     },
   };
 });

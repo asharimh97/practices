@@ -62,7 +62,13 @@ export const effects = {
         const response = await movieApi.getDetailMovie(movieId);
 
         if (!response.data) {
-          throw Error("Get movie detail failed");
+          throw new Error("Get movie detail failed");
+        }
+
+        const { Error: error, Response: res } = response.data;
+
+        if (res === "False" || error) {
+          return { error };
         }
 
         return {
@@ -89,7 +95,10 @@ const extraReducers = (builder: ActionReducerMapBuilder<MovieState>) => {
     .addCase(
       effects.getAllMovies.fulfilled,
       (state: MovieState, action: PayloadAction<any>) => {
-      // do something here
+        const { error } = action.payload;
+        if (error) {
+          state.error = error;
+        }
       },
     )
     .addCase(

@@ -12,18 +12,16 @@ import movieApi from "../api/movie";
 
 const initialState = {
   data: [],
+  totalData: 0,
   detail: {},
   isLoading: false,
   message: "",
   error: null,
 };
 
-type MovieState = {
+type MovieState = typeof initialState & {
   data: Array<Record<string, any>>,
   detail: Record<string, any>,
-  isLoading: boolean;
-  message: string;
-  error: any;
 };
 
 // @ts-ignore
@@ -42,6 +40,17 @@ const actionType = {
   GET_DETAIL_MOVIE: `${CONTEXT}/GET_DETAIL_MOVIE`,
 };
 
+interface AllMoviesPayload {
+  data?: Array<Record<string, any>>;
+  total?: number;
+  error?: any;
+}
+
+interface AllMoviesParams {
+  page: number;
+  keyword: string;
+}
+
 interface DetailMoviePayload {
   error?: any;
   data?: Record<string, any>
@@ -49,10 +58,28 @@ interface DetailMoviePayload {
 }
 
 export const effects = {
-  getAllMovies: createAsyncThunk<any, any>(
+  getAllMovies: createAsyncThunk<AllMoviesPayload, AllMoviesParams>(
     actionType.GET_ALL_MOVIES,
     async ({ page, keyword }) => {
-      console.log({ page, keyword });
+      try {
+        const response = await movieApi.getAllMovies({ page, keyword });
+
+        if (!response.data) {
+          throw new Error("Get all movies failed");
+        }
+
+        const {
+          Error: error, Response: res, Search, totalResults,
+        } = response.data;
+
+        if (res === "False" || error) {
+          return { error };
+        }
+
+        return { data: Search, total: Number(totalResults) };
+      } catch (error) {
+        return { error };
+      }
     },
   ),
   getDetailMovie: createAsyncThunk<DetailMoviePayload, string>(
@@ -93,11 +120,25 @@ const extraReducers = (builder: ActionReducerMapBuilder<MovieState>) => {
       (state: MovieState, action: Record<string, any>) => ({ ...action.payload.movie }),
     )
     .addCase(
+      effects.getAllMovies.pending,
+      (state: MovieState, action: PayloadAction<any, any, any>) => {
+        const { page } = action.meta.arg;
+        if (page === 1) {
+          state.data = [];
+        }
+      },
+    )
+    .addCase(
       effects.getAllMovies.fulfilled,
-      (state: MovieState, action: PayloadAction<any>) => {
-        const { error } = action.payload;
+      (state: MovieState, action: PayloadAction<AllMoviesPayload>) => {
+        const { error, data, total } = action.payload;
         if (error) {
           state.error = error;
+        } else {
+          // @ts-ignore
+          state.data.push(...data);
+          // @ts-ignore
+          state.totalData = total;
         }
       },
     )

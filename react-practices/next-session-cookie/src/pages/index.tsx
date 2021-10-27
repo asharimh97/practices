@@ -23,7 +23,11 @@ export async function getServerSideProps({ req, res }) {
   }
 }
 
-const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+interface HomeProps extends InferGetServerSidePropsType<typeof getServerSideProps> {
+  [key: string]: any;
+}
+
+const Home: NextPage<HomeProps> = ({ session }) => {
   console.log(session);
   return (
     <div className={styles.container}>

@@ -1,6 +1,6 @@
-import { expressSession } from 'next-session/lib/compat'
+import { expressSession, promisifyStore } from 'next-session/lib/compat'
 import nextSession from 'next-session';
-import RedisStore from 'connect-redis';
+import RedisStoreFactory from 'connect-redis';
 
 const options = {
   cookie: {
@@ -9,9 +9,16 @@ const options = {
   }
 };
 
-const sessionStore = RedisStore(expressSession);
+const RedisStore = RedisStoreFactory(expressSession);
+
+const sessionStore = new RedisStore({});
 
 export const getSession = nextSession({
-  // store: sessionStore,
-  ...options,
+  // store: promisifyStore(sessionStore),
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    path: '/',
+    sameSite: 'strict',
+  }
 });

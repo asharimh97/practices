@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+// @ts-ignore
 import { Text, Flex, Divider, Tag } from "sore-ui";
 import useSWR from 'swr';
 import { API_URL } from '@/config/api';

@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+// @ts-ignore
 import { defaultTheme } from "sore-ui";
 import { ThemeProvider, Preflight } from "@xstyled/styled-components"
 import { SWRConfig } from 'swr';

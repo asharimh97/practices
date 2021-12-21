@@ -14,13 +14,15 @@ rp(url)
         if (i !== 0) {
           const parsed = el.children
             .filter(col => col.type === "tag")
-            .map(col => col.children[0].data);
-          console.log(parsed)
-          // parsedData.push(parsed);
+            .map(col => col.children && col.children[0] && col.children[0].data);
+          // console.log(parsed)
+          parsedData.push(parsed);
         }
       })
 
-    fs.appendFile("log-parsed.txt", parsedData, (err) => {
+      // console.log(parsedData)
+
+    fs.appendFile("log-parsed.js", parsedData, (err) => {
       if (err) {
         throw err;
       }
@@ -29,5 +31,5 @@ rp(url)
     })
   })
   .catch((err) => {
-    // console.error(err);
+    console.error(err);
   })

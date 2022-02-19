@@ -7,7 +7,17 @@ module.exports = {
       path: '/hello',
       handler: 'hello.custom',
       config: {
-        auth: false
+        auth: false,
+        policies: ['api::hello.hello-policies'],
+      }
+    },
+    {
+      method: 'GET',
+      path: '/hello/bandung',
+      handler: 'hello.bandung',
+      config: {
+        auth: false,
+        policies: ['api::hello.hello-policies'],
       }
     }
   ]

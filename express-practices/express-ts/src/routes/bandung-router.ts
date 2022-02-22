@@ -1,15 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import StatusCodes from "http-status-codes";
 import { Router, Request, Response } from "express";
+import mysql from "mysql2";
 
 // Constants
 const router = Router();
 const { OK } = StatusCodes;
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "strapi",
+});
 
 // Routes/paths
 const routes = {
   getBandung: "/",
   getLautanApi: "/lautan-api",
   getPriangan: "/priangan",
+  getConnect: "/connect",
 };
 
 router.get(routes.getBandung, (_: Request, res: Response) => {
@@ -34,6 +43,23 @@ router.get(routes.getPriangan, (_: Request, res: Response) => {
     message: "Hohoho",
   });
   res.end();
+});
+
+router.get(routes.getConnect, (_: Request, res: Response) => {
+  connection.connect();
+  connection.query(
+    "SELECT * FROM `Persons`",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.status(OK).json({
+        message: "Connected to database",
+        data: {
+          results,
+        },
+      });
+    },
+  );
+  connection.end();
 });
 
 export default router;

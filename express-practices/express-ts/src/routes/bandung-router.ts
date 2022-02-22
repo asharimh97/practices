@@ -48,7 +48,7 @@ router.get(routes.getPriangan, (_: Request, res: Response) => {
 router.get(routes.getConnect, (_: Request, res: Response) => {
   connection.connect();
   connection.query(
-    "SELECT * FROM `Persons`",
+    "SELECT `PersonID` as `ID`, `FirstName` as `first_name`, `LastName` as `last_name`, CONCAT(Address, ', ', City) as address FROM `Persons`",
     function (error, results, fields) {
       if (error) throw error;
       res.status(OK).json({

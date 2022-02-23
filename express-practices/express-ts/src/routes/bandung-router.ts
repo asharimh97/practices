@@ -47,18 +47,22 @@ router.get(routes.getPriangan, (_: Request, res: Response) => {
 
 router.get(routes.getConnect, (_: Request, res: Response) => {
   connection.connect();
-  connection.query(
-    "SELECT `PersonID` as `ID`, `FirstName` as `first_name`, `LastName` as `last_name`, CONCAT(Address, ', ', City) as address FROM `Persons`",
-    function (error, results, fields) {
-      if (error) throw error;
-      res.status(OK).json({
-        message: "Connected to database",
-        data: {
-          results,
-        },
-      });
-    },
-  );
+
+  const query = `
+    SELECT PersonID as ID, FirstName as first_name,
+    LastName as last_name, CONCAT(Address, ', ', City) as address 
+    FROM Persons
+  `;
+
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    res.status(OK).json({
+      message: "Connected to database",
+      data: {
+        results,
+      },
+    });
+  });
   connection.end();
 });
 

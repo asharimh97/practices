@@ -1,14 +1,15 @@
-import { Router } from 'express';
-import userRouter from './user-router';
+import { Router } from "express";
+import userRouter from "./user-router";
 import bandungRouter from "./bandung-router";
-
+import agentRouter from "./agent-router";
 
 // Export the base-router
 const baseRouter = Router();
 
 // Setup routers
-baseRouter.use('/users', userRouter);
+baseRouter.use("/users", userRouter);
 baseRouter.use("/bandung", bandungRouter);
+baseRouter.use("/agents", agentRouter);
 
 // Export default.
 export default baseRouter;

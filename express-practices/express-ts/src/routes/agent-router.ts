@@ -28,7 +28,7 @@ router.get(routes.all, (_: Request, res: Response) => {
     SELECT AGENT_CODE as agent_code, TRIM(AGENT_NAME) as name,
     TRIM(WORKING_AREA) as area, COMMISSION as commission,
     TRIM(PHONE_NO) as phone, COUNTRY as country 
-    FROM agents
+    FROM agents WHERE active = 1
   `;
 
   connection.query(query, function (error, results, fields) {
@@ -47,7 +47,7 @@ router.get(routes.detail, (req: Request, res: Response) => {
     SELECT AGENT_CODE as agent_code, TRIM(AGENT_NAME) as name,
     TRIM(WORKING_AREA) as area, COMMISSION as commission,
     TRIM(PHONE_NO) as phone, COUNTRY as country 
-    FROM agents WHERE AGENT_CODE = ?
+    FROM agents WHERE AGENT_CODE = ? AND active = 1
   `;
 
   connection.query(query, [req.params.id], function (error, results, fields) {
@@ -68,7 +68,7 @@ router.get(routes.search, (req: Request, res: Response) => {
     SELECT AGENT_CODE as agent_code, TRIM(AGENT_NAME) as name,
     TRIM(WORKING_AREA) as area, COMMISSION as commission,
     TRIM(PHONE_NO) as phone, COUNTRY as country 
-    FROM agents WHERE AGENT_NAME LIKE ?
+    FROM agents WHERE AGENT_NAME LIKE ? AND active = 1
   `;
 
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -98,6 +98,42 @@ router.post(routes.add, (req: Request, res: Response) => {
       if (error) throw error;
       res.status(OK).json({
         message: "Successfully add agent",
+        data: {},
+      });
+    },
+  );
+});
+
+router.delete(routes.delete, (req: Request, res: Response) => {
+  const query = `
+    UPDATE agents SET active = 0 WHERE AGENT_CODE = ?
+  `;
+
+  connection.query(query, [req.params.id], function (error, results, fields) {
+    if (error) throw error;
+    res.status(OK).json({
+      message: "Successfully delete agent",
+      data: {},
+    });
+  });
+});
+
+router.patch(routes.update, (req: Request, res: Response) => {
+  const { name, area, commission, phone, country } = req.body;
+  const { id } = req.params;
+
+  const query = `
+    UPDATE agents SET AGENT_NAME = ?, WORKING_AREA = ?, COMMISSION = ?,
+    PHONE_NO = ?, COUNTRY = ? WHERE AGENT_CODE = ?
+  `;
+
+  connection.query(
+    query,
+    [name, area, commission, phone, country, id],
+    function (error, results, fields) {
+      if (error) throw error;
+      res.status(OK).json({
+        message: "Successfully update agent",
         data: {},
       });
     },

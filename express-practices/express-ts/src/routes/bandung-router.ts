@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import StatusCodes from "http-status-codes";
 import { Router, Request, Response } from "express";
 import mysql from "mysql2";
+
+import auth from "@shared/auth";
 
 // Constants
 const router = Router();
@@ -20,6 +23,8 @@ const routes = {
   getPriangan: "/priangan",
   getConnect: "/connect",
 };
+
+router.use(auth);
 
 router.get(routes.getBandung, (_: Request, res: Response) => {
   res.status(OK).json({

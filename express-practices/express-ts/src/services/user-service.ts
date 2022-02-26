@@ -1,64 +1,63 @@
-import userDao from '@daos/user-dao';
-import { IUser } from '@models/user-model';
-import { UserNotFoundError } from '@shared/errors';
-
-
+import userDao from "@daos/user-dao";
+import { IUser } from "@models/user-model";
+import { UserNotFoundError } from "@shared/errors";
 
 /**
  * Get all users.
- * 
- * @returns 
+ *
+ * @returns
  */
 function getAll(): Promise<IUser[]> {
-    return userDao.getAll();
+  return userDao.getAll();
 }
 
+function getUser(email: string): Promise<IUser | null> {
+  return userDao.getOne(email);
+}
 
 /**
  * Add one user.
- * 
- * @param user 
- * @returns 
+ *
+ * @param user
+ * @returns
  */
 function addOne(user: IUser): Promise<void> {
-    return userDao.add(user);
+  return userDao.add(user);
 }
-
 
 /**
  * Update one user.
- * 
- * @param user 
- * @returns 
+ *
+ * @param user
+ * @returns
  */
 async function updateOne(user: IUser): Promise<void> {
-    const persists = await userDao.persists(user.id);
-    if (!persists) {
-        throw new UserNotFoundError();
-    }
-    return userDao.update(user);
+  const persists = await userDao.persists(user.id);
+  if (!persists) {
+    throw new UserNotFoundError();
+  }
+  return userDao.update(user);
 }
-
 
 /**
  * Delete a user by their id.
- * 
- * @param id 
- * @returns 
+ *
+ * @param id
+ * @returns
  */
 async function deleteOne(id: number): Promise<void> {
-    const persists = await userDao.persists(id);
-    if (!persists) {
-        throw new UserNotFoundError();
-    }
-    return userDao.delete(id);
+  const persists = await userDao.persists(id);
+  if (!persists) {
+    throw new UserNotFoundError();
+  }
+  return userDao.delete(id);
 }
-
 
 // Export default
 export default {
-    getAll,
-    addOne,
-    updateOne,
-    delete: deleteOne,
+  getAll,
+  addOne,
+  updateOne,
+  delete: deleteOne,
+  getUser,
 } as const;

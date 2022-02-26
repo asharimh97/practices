@@ -1,7 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { JWT_SECRET } from "@constants/api";
+import { IUser } from "@models/user-model";
 import { Request, Response, NextFunction } from "express";
 import StatusCodes from "http-status-codes";
+import jwt from "jsonwebtoken";
+import expressJwt from "express-jwt";
 
 const { UNAUTHORIZED } = StatusCodes;
+
+const tokenSecret = JWT_SECRET;
+export const generateAccessToken = (user: IUser) => {
+  return jwt.sign(user, tokenSecret, { expiresIn: "30s", algorithm: "HS256" });
+};
+
+export const verifyAccessToken = expressJwt({ secret: tokenSecret, algorithms: ["HS256"] });
 
 // verify jwt token, if valid, next()
 // otherwise return error

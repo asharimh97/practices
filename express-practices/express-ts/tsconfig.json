@@ -66,6 +66,7 @@
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "paths": {
+      "@config/*": ["src/config/*"],
       "@constants/*": ["src/constants/*"],
       "@daos/*": ["src/daos/*"],
       "@models/*": ["src/models/*"],

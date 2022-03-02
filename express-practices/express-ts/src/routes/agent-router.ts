@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import StatusCodes from "http-status-codes";
 import { Router, Request, Response } from "express";
-import mysql from "mysql2";
+import connection from "@config/query-config";
 
 // Constants
 const router = Router();
-const { OK } = StatusCodes;
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "agents",
-});
+const { OK, INTERNAL_SERVER_ERROR } = StatusCodes;
 
 const routes = {
   all: "/",
@@ -21,7 +15,6 @@ const routes = {
   delete: "/delete/:id",
   detail: "/agent/:id",
 };
-connection.connect();
 
 router.get(routes.all, (_: Request, res: Response) => {
   const query = `
@@ -31,15 +24,18 @@ router.get(routes.all, (_: Request, res: Response) => {
     FROM agents WHERE active = 1
   `;
 
-  connection.query(query, function (error, results, fields) {
-    if (error) throw error;
+  connection.query(query, (err, results) => {
+    if (err) {
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Internal server error",
+      });
+    }
+
     res.status(OK).json({
       message: "Successfully get all agents",
       data: results,
     });
   });
-
-  // connection.end();
 });
 
 router.get(routes.detail, (req: Request, res: Response) => {
@@ -50,7 +46,7 @@ router.get(routes.detail, (req: Request, res: Response) => {
     FROM agents WHERE AGENT_CODE = ? AND active = 1
   `;
 
-  connection.query(query, [req.params.id], function (error, results, fields) {
+  connection.query(query, [req.params.id], function (error, results) {
     if (error) throw error;
     res.status(OK).json({
       message: "Successfully get agent",
@@ -72,7 +68,7 @@ router.get(routes.search, (req: Request, res: Response) => {
   `;
 
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  connection.query(query, [`%${name}%`], function (error, results, fields) {
+  connection.query(query, [`%${name}%`], function (error, results) {
     if (error) throw error;
     res.status(OK).json({
       message: "Successfully search agent",
@@ -91,17 +87,13 @@ router.post(routes.add, (req: Request, res: Response) => {
     PHONE_NO, COUNTRY) VALUES (?, ?, ?, ?, ?, ?)
   `;
 
-  connection.query(
-    query,
-    [code, name, area, commission, phone, country],
-    function (error, results, fields) {
-      if (error) throw error;
-      res.status(OK).json({
-        message: "Successfully add agent",
-        data: {},
-      });
-    },
-  );
+  connection.query(query, [code, name, area, commission, phone, country], function (error) {
+    if (error) throw error;
+    res.status(OK).json({
+      message: "Successfully add agent",
+      data: {},
+    });
+  });
 });
 
 router.delete(routes.delete, (req: Request, res: Response) => {
@@ -109,7 +101,7 @@ router.delete(routes.delete, (req: Request, res: Response) => {
     UPDATE agents SET active = 0 WHERE AGENT_CODE = ?
   `;
 
-  connection.query(query, [req.params.id], function (error, results, fields) {
+  connection.query(query, [req.params.id], function (error) {
     if (error) throw error;
     res.status(OK).json({
       message: "Successfully delete agent",
@@ -127,17 +119,13 @@ router.patch(routes.update, (req: Request, res: Response) => {
     PHONE_NO = ?, COUNTRY = ? WHERE AGENT_CODE = ?
   `;
 
-  connection.query(
-    query,
-    [name, area, commission, phone, country, id],
-    function (error, results, fields) {
-      if (error) throw error;
-      res.status(OK).json({
-        message: "Successfully update agent",
-        data: {},
-      });
-    },
-  );
+  connection.query(query, [name, area, commission, phone, country, id], function (error) {
+    if (error) throw error;
+    res.status(OK).json({
+      message: "Successfully update agent",
+      data: {},
+    });
+  });
 });
 
 export default router;

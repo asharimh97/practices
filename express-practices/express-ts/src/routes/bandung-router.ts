@@ -59,7 +59,7 @@ router.get(routes.getConnect, (_: Request, res: Response) => {
     FROM Persons
   `;
 
-  connection.query(query, function (error, results, fields) {
+  connection.query(query, function (error, results) {
     if (error) throw error;
     res.status(OK).json({
       message: "Connected to database",

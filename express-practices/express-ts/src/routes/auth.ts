@@ -5,7 +5,12 @@ import { Request, Response, Router } from "express";
 
 import userService from "@services/user-service";
 import { ParamMissingError } from "@shared/errors";
-import { generateAccessToken, verifyAccessToken } from "@shared/auth";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+  verifyAccessToken,
+  verifyRefreshToken,
+} from "@shared/auth";
 
 // Constants
 const router = Router();
@@ -14,6 +19,7 @@ const { OK, NOT_FOUND } = StatusCodes;
 const routes = {
   login: "/",
   verify: "/verify",
+  refresh: "/refresh",
 };
 
 router.post(routes.login, async (req: Request, res: Response) => {
@@ -35,6 +41,7 @@ router.post(routes.login, async (req: Request, res: Response) => {
     data: {
       user,
       access_token: generateAccessToken(user),
+      refresh_token: generateRefreshToken(user),
     },
   });
 });
@@ -42,6 +49,16 @@ router.post(routes.login, async (req: Request, res: Response) => {
 router.get(routes.verify, verifyAccessToken, (req: Request, res: Response) => {
   res.status(200).json({
     message: "Access token is valid",
+  });
+});
+
+router.post(routes.refresh, verifyRefreshToken, (req: Request, res: Response) => {
+  return res.status(OK).json({
+    message: "Refresh token is valid",
+    data: {
+      access_token: "access token baru",
+      refresh_token: "refresh token baru",
+    },
   });
 });
 

@@ -13,7 +13,7 @@ const tokenSecret = JWT_SECRET;
 const refreshSecret = JWT_REFRESH_SECRET;
 
 export const generateAccessToken = (user: IUser) => {
-  return jwt.sign(user, tokenSecret, { expiresIn: "30s", algorithm: "HS256" });
+  return jwt.sign(user, tokenSecret, { expiresIn: "30m", algorithm: "HS256" });
 };
 
 export const generateRefreshToken = (user: IUser) => {
@@ -21,19 +21,17 @@ export const generateRefreshToken = (user: IUser) => {
 };
 
 export const verifyAccessToken = expressJwt({ secret: tokenSecret, algorithms: ["HS256"] });
-export const verifyRefreshToken = expressJwt({
-  secret: refreshSecret,
-  algorithms: ["HS256"],
-  getToken: (req: Request) => {
-    const { token } = req.body;
+export const verifyRefreshToken = expressJwt({ secret: refreshSecret, algorithms: ["HS256"] });
+export const decodeRefreshToken = (req: Request) => {
+  const bearer = req.headers.authorization;
+  const token = bearer?.split(" ")[1];
 
-    if (!token) {
-      return null;
-    }
+  if (!token) {
+    return null;
+  }
 
-    return token;
-  },
-});
+  return jwt.decode(token);
+};
 
 // verify jwt token, if valid, next()
 // otherwise return error

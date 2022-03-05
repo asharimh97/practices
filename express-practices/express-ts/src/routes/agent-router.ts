@@ -7,7 +7,7 @@ import connection from "@config/query-config";
 const router = Router();
 const { OK, INTERNAL_SERVER_ERROR } = StatusCodes;
 
-const routes = {
+export const routes = {
   all: "/",
   add: "/add",
   update: "/update/:id",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import supertest from 'supertest';
 import StatusCodes from 'http-status-codes';
 import { SuperTest, Test, Response } from 'supertest';
@@ -104,6 +105,7 @@ describe('user-router', () => {
                 });
         });
 
+        // eslint-disable-next-line max-len
         it(`should return a JSON object with an error message of "${ParamMissingError.Msg}" and a status
             code of "${BAD_REQUEST}" if the user param was missing.`, (done) => {
             // Call API

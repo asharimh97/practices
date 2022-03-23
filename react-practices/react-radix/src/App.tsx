@@ -1,6 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { styled } from "./configs/stitches.config";
+
+const Button = styled("button", {
+  background: "$red9",
+  color: "white",
+  border: "none",
+  borderRadius: "5px",
+  p: "12px",
+  my: "20px",
+});
 
 function App() {
   return (
@@ -18,6 +28,7 @@ function App() {
         >
           Learn React
         </a>
+        <Button>Hello</Button>
       </header>
     </div>
   );

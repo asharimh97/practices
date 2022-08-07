@@ -13,4 +13,20 @@ const dbConfig: mysql.PoolOptions = {
 
 const pool = mysql.createPool(dbConfig);
 
+const conn = mysql.createConnection({
+  host: DB_HOST,
+  user: DB_USERNAME,
+  password: DB_PASSWORD,
+  database: DB_DBNAME,
+});
+
+const connect = () => {
+  conn.connect((err) => {
+    if (err) {
+      console.error(err);
+      setTimeout(connect, 2000);
+    }
+  });
+};
+
 export default pool;

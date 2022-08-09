@@ -7,7 +7,14 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register(/*{ strapi }*/) {
+    // The code below is example of disabling action
+    // strapi
+    //   .plugin("graphql")
+    //   .service("extension")
+    //   .shadowCRUD("api::category.category")
+    //   .disableActions(["findOne", "find"])
+  },
 
   /**
    * An asynchronous bootstrap function that runs before

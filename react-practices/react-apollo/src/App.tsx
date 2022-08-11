@@ -1,8 +1,42 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useQuery, gql } from "@apollo/client";
+
+const GET_CATEGORIES = gql`
+  query getCategories {
+    categories {
+      data {
+        id,
+        attributes {
+          name
+        }
+      }
+    }
+  }
+`;
 
 function App() {
+  const { loading, error, data } = useQuery(GET_CATEGORIES);
+
+  const renderContent = () => {
+    if (loading) {
+      return "Loading..."
+    }
+
+    if (error) {
+      return "Oops!"
+    }
+
+    return (
+      <div style={{ display: "flex", gap: "10px", color: "white", marginTop: "20px", fontSize: "14px" }}>
+        {data.categories.data.map((item: any) => (
+          <span>{item.attributes.name}</span>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +52,7 @@ function App() {
         >
           Learn React
         </a>
+        {renderContent()}
       </header>
     </div>
   );

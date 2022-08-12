@@ -16,6 +16,19 @@ const GET_CATEGORIES = gql`
   }
 `;
 
+const ADD_CATEGORY = gql`
+  mutation addCategory {
+    createCategory(data: { name: "Indonesia" }) {
+      data {
+        id,
+        attributes {
+          name
+        }
+      }
+    }
+  }
+`
+
 function App() {
   const { loading, error, data } = useQuery(GET_CATEGORIES);
 
@@ -26,6 +39,13 @@ function App() {
 
     if (error) {
       return "Oops!"
+    }
+
+    const handleSubmit = () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const add = useQuery(ADD_CATEGORY);
+
+      console.log(add);
     }
 
     return (
@@ -52,6 +72,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={handleSubmit}>Add category</button>
         {renderContent()}
       </header>
     </div>

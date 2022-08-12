@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 
 const GET_CATEGORIES = gql`
   query getCategories {
@@ -31,6 +31,12 @@ const ADD_CATEGORY = gql`
 
 function App() {
   const { loading, error, data } = useQuery(GET_CATEGORIES);
+  const [addCategory, addResponse] = useMutation(ADD_CATEGORY);
+
+  const handleSubmit = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    addCategory()
+  }
 
   const renderContent = () => {
     if (loading) {
@@ -39,13 +45,6 @@ function App() {
 
     if (error) {
       return "Oops!"
-    }
-
-    const handleSubmit = () => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const add = useQuery(ADD_CATEGORY);
-
-      console.log(add);
     }
 
     return (

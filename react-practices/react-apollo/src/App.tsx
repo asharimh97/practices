@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useQuery, gql, useMutation } from "@apollo/client";
+import client from "./services/apolloClient"
 
 const GET_CATEGORIES = gql`
   query getCategories {
@@ -18,7 +19,7 @@ const GET_CATEGORIES = gql`
 
 const ADD_CATEGORY = gql`
   mutation addCategory {
-    createCategory(data: { name: "Indonesia" }) {
+    createCategory(data: { name: "Hehehe" }) {
       data {
         id,
         attributes {
@@ -31,11 +32,20 @@ const ADD_CATEGORY = gql`
 
 function App() {
   const { loading, error, data } = useQuery(GET_CATEGORIES);
-  const [addCategory, addResponse] = useMutation(ADD_CATEGORY);
+  const [addCategory, { error: errorAdd, loading: loadingAdd }] = useMutation(ADD_CATEGORY);
+  
+  useEffect(() => {
+    if (!errorAdd && !loadingAdd) {
+      client.refetchQueries({
+        include: ["categories"]
+      })
+    }
+  }, [errorAdd, loadingAdd]);
+
 
   const handleSubmit = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    addCategory()
+    addCategory();
   }
 
   const renderContent = () => {
